@@ -1,8 +1,9 @@
 module Main (main) where
 
-import qualified MyLib (someFunc)
+import Data.Semiring (times)
+import FaithfulData (waiting)
+import MCMC.Log
 
 main :: IO ()
 main = do
-  putStrLn "Hello, Haskell!"
-  MyLib.someFunc
+  putStrLn $ show (head waiting)

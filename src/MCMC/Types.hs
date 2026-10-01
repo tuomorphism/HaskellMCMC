@@ -1,4 +1,4 @@
-module MCMC.Types (Value, Distribution (..), Vec2 (..), Mat2 (..), mkMat2, mkVec2) where
+module MCMC.Types (Value, Distribution (..), Vec2 (..), Mat2 (..), mkMat2, mkVec2, mkDistribution) where
 
 import Numeric.Natural
 

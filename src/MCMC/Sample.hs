@@ -1,16 +1,9 @@
-module MCMC.Sample (GibbConfiguration (..), GibbStrategy) where
+module MCMC.Sample (GibbConfiguration (..)) where
 
-import MCMC.Types (Distribution, Value)
+import MCMC.Types (Distribution, Mat2, Value, mkDistribution)
 import Numeric.Natural
 
-data GibbStrategy = Random | Deterministic
+data GibbConfiguration = GibbConfiguration {iterations :: Natural}
 
-data GibbConfiguration = GibbConfiguration {strategy :: GibbStrategy, iterations :: Natural}
-
-sampleDeterministicGibbs :: Distribution -> Natural -> Distribution
-sampleDeterministicGibbs u n = Distribution
-
-gibbSampler :: Distribution -> GibbStrategy -> Distribution
-gibbSampler u (GibbConfiguration strat iters) =
-  case strat of
-    Deterministic -> sampleDeterministicGibbs u strat
+gaussianConjugate :: Distribution -> Mat2 -> [Value] -> Distribution
+gaussianConjugate meanPriorDist priorCov x = mkDistribution informationMean informationCov
